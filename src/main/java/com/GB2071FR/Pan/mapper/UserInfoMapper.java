@@ -1,6 +1,6 @@
 package com.GB2071FR.Pan.mapper;
 
-import com.GB2071FR.Pan.entity.UserInfo;
+import com.GB2071FR.Pan.entity.po.UserInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
 
 /**

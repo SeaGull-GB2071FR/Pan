@@ -1,7 +1,7 @@
 package com.GB2071FR.Pan.service;
 
+import com.GB2071FR.Pan.entity.po.UserInfo;
 import com.baomidou.mybatisplus.extension.service.IService;
-import com.GB2071FR.Pan.entity.UserInfo;
 
 
 /**

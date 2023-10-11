@@ -1,6 +1,6 @@
 package com.GB2071FR.Pan.service.impl;
 
-import com.GB2071FR.Pan.entity.UserInfo;
+import com.GB2071FR.Pan.entity.po.UserInfo;
 import com.GB2071FR.Pan.mapper.UserInfoMapper;
 import com.GB2071FR.Pan.service.UserInfoService;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
