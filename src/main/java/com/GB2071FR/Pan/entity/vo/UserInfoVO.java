@@ -1,11 +1,9 @@
-package com.easypan.entity.vo;
+package com.GB2071FR.Pan.entity.vo;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Date;
 
-import com.easypan.entity.enums.DateTimePatternEnum;
-import com.easypan.utils.DateUtil;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 

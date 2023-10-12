@@ -2,6 +2,7 @@ package com.GB2071FR.Pan.mapper;
 
 import com.GB2071FR.Pan.entity.po.UserInfo;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import org.springframework.data.repository.query.Param;
 
 /**
  * <p>
@@ -13,4 +14,5 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface UserInfoMapper extends BaseMapper<UserInfo> {
 
+    UserInfo selectByEmail(@Param("email") String email);
 }

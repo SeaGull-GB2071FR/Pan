@@ -1,4 +1,4 @@
-package com.easypan.entity.vo;
+package com.GB2071FR.Pan.entity.vo;
 
 
 public class ResponseVO<T> {

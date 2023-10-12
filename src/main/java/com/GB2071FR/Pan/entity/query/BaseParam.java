@@ -1,40 +1,18 @@
-package com.easypan.entity.query;
+package com.GB2071FR.Pan.entity.query;
 
 
+import com.GB2071FR.Pan.entity.query.SimplePage;
+import lombok.Data;
+
+@Data
 public class BaseParam {
+
 	private SimplePage simplePage;
+
 	private Integer pageNo;
+
 	private Integer pageSize;
+
 	private String orderBy;
-	public SimplePage getSimplePage() {
-		return simplePage;
-	}
 
-	public void setSimplePage(SimplePage simplePage) {
-		this.simplePage = simplePage;
-	}
-
-	public Integer getPageNo() {
-		return pageNo;
-	}
-
-	public void setPageNo(Integer pageNo) {
-		this.pageNo = pageNo;
-	}
-
-	public Integer getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(Integer pageSize) {
-		this.pageSize = pageSize;
-	}
-
-	public void setOrderBy(String orderBy){
-		this.orderBy = orderBy;
-	}
-
-	public String getOrderBy(){
-		return this.orderBy;
-	}
 }
