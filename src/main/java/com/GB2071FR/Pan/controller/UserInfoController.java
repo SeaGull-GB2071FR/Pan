@@ -26,7 +26,7 @@ import java.io.IOException;
  * @since 2023-10-10
  */
 @RestController
-public class UserInfoController {
+public class UserInfoController extends ABaseController{
 
     //    已完成：Nginx 的 nginx.conf 配置记得改
     @Autowired
@@ -71,8 +71,7 @@ public class UserInfoController {
                 throw new BusinessException("验证码不正确");
             }
             emailCodeService.sendEmailCode(email, type);
-//            return getSuccessResopnseVO(null);
-            return null;
+            return getSuccessResponseVO(null);
 
         } finally {
             session.removeAttribute(Constants.CHECK_CODE_KEY_EMAIL);

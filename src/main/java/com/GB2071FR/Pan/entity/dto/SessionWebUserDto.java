@@ -1,4 +1,4 @@
-package com.easypan.entity.dto;
+package com.GB2071FR.Pan.entity.dto;
 
 public class SessionWebUserDto {
     public String getNickName() {

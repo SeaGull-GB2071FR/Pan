@@ -2,6 +2,8 @@ package com.GB2071FR.Pan.controller;
 
 
 import com.GB2071FR.Pan.entity.constants.Constants;
+import com.GB2071FR.Pan.entity.dto.SessionShareDto;
+import com.GB2071FR.Pan.entity.dto.SessionWebUserDto;
 import com.GB2071FR.Pan.entity.enums.ResponseCodeEnum;
 import com.GB2071FR.Pan.entity.vo.PaginationResultVO;
 import com.GB2071FR.Pan.entity.vo.ResponseVO;
@@ -82,13 +84,13 @@ public class ABaseController {
             }
         }
     }
-    protected com.easypan.entity.dto.SessionWebUserDto getUserInfoFromSession(HttpSession session){
-        com.easypan.entity.dto.SessionWebUserDto sessionWebUserDto = (com.easypan.entity.dto.SessionWebUserDto) session.getAttribute(Constants.SESSION_KEY);
+    protected SessionWebUserDto getUserInfoFromSession(HttpSession session){
+        SessionWebUserDto sessionWebUserDto = (SessionWebUserDto) session.getAttribute(Constants.SESSION_KEY);
         return sessionWebUserDto;
     }
 
-    protected com.easypan.entity.dto.SessionShareDto getSessionShareFromSession(HttpSession session, String shareId){
-        com.easypan.entity.dto.SessionShareDto sessionShareDto = (com.easypan.entity.dto.SessionShareDto) session.getAttribute(Constants.SESSION_SHARE_KEY + shareId);
+    protected SessionShareDto getSessionShareFromSession(HttpSession session, String shareId){
+        SessionShareDto sessionShareDto = (SessionShareDto) session.getAttribute(Constants.SESSION_SHARE_KEY + shareId);
         return sessionShareDto;
     }
 }
