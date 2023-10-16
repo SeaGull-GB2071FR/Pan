@@ -1,7 +1,8 @@
 package com.GB2071FR.Pan.entity.po;
 
 import com.GB2071FR.Pan.entity.enums.DateTimePatternEnum;
-import com.easypan.utils.DateUtil;
+import com.GB2071FR.Pan.utils.DateUtil;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import java.util.Date;
@@ -16,6 +17,7 @@ import java.io.Serializable;
 /**
  * 用户信息
  */
+@TableName("user_info")
 public class  UserInfo implements Serializable {
 
 

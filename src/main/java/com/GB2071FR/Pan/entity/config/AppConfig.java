@@ -1,4 +1,4 @@
-package com.easypan.entity.config;
+package com.GB2071FR.Pan.entity.config;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

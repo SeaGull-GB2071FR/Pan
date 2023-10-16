@@ -1,4 +1,4 @@
-package com.easypan.entity.vo;
+package com.GB2071FR.Pan.entity.vo;
 import java.util.ArrayList;
 import java.util.List;
 

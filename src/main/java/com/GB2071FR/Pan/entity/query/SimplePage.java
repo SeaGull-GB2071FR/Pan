@@ -1,7 +1,10 @@
-package com.easypan.entity.query;
-import com.easypan.entity.enums.PageSize;
+package com.GB2071FR.Pan.entity.query;
 
 
+import com.GB2071FR.Pan.entity.enums.PageSize;
+import lombok.Data;
+
+@Data
 public class SimplePage {
 	private int pageNo;
 	private int countTotal;
@@ -49,53 +52,9 @@ public class SimplePage {
 		this.end = this.pageSize;
 	}
 
-	public int getStart() {
-		return start;
-	}
-
-	public int getEnd() {
-		return end;
-	}
-
-	public int getPageTotal() {
-		return pageTotal;
-	}
-
-	public int getPageNo() {
-		return pageNo;
-	}
-
-	public void setPageNo(int pageNo) {
-		this.pageNo = pageNo;
-	}
-
-	public void setPageTotal(int pageTotal) {
-		this.pageTotal = pageTotal;
-	}
-
-	public int getCountTotal() {
-		return countTotal;
-	}
-
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setStart(int start) {
-		this.start = start;
-	}
-
-	public void setEnd(int end) {
-		this.end = end;
-	}
-
 	public void setCountTotal(int countTotal) {
 		this.countTotal = countTotal;
 		this.action();
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
 	}
 
 }

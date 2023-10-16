@@ -1,7 +1,8 @@
 package com.GB2071FR.Pan.entity.po;
 
 import com.GB2071FR.Pan.entity.enums.DateTimePatternEnum;
-import com.easypan.utils.DateUtil;
+import com.GB2071FR.Pan.utils.DateUtil;
+import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -12,6 +13,7 @@ import java.util.Date;
 /**
  * 邮箱验证码
  */
+@TableName("email_code")
 public class EmailCode implements Serializable {
 
 
