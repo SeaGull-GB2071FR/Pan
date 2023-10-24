@@ -7,5 +7,8 @@
     <select id="selectByEmail" resultType="com.GB2071FR.Pan.entity.po.UserInfo">
         select * from user_info where email=#{email}
     </select>
+    <select id="selectByNickName" resultType="com.GB2071FR.Pan.entity.po.UserInfo">
+        select * from user_info where nick_name=#{nickName}
+    </select>
 
 </mapper>

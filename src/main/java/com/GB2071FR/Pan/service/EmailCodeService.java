@@ -8,4 +8,7 @@ public interface EmailCodeService extends IService<EmailCode> {
 
 //    发送邮箱验证码
     void sendEmailCode(String email,Integer type);
+
+//    验证邮箱验证码
+    void checkCode(String email,String emailCode);
 }

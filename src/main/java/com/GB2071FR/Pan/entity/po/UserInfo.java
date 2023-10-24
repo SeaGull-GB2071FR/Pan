@@ -2,6 +2,7 @@ package com.GB2071FR.Pan.entity.po;
 
 import com.GB2071FR.Pan.entity.enums.DateTimePatternEnum;
 import com.GB2071FR.Pan.utils.DateUtil;
+import com.baomidou.mybatisplus.annotation.TableId;
 import com.baomidou.mybatisplus.annotation.TableName;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -9,6 +10,8 @@ import java.util.Date;
 
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Data;
+import lombok.Getter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
@@ -17,6 +20,7 @@ import java.io.Serializable;
 /**
  * 用户信息
  */
+@Data
 @TableName("user_info")
 public class  UserInfo implements Serializable {
 
@@ -24,6 +28,7 @@ public class  UserInfo implements Serializable {
     /**
      * 用户ID
      */
+    @TableId(value = "user_id")
     private String userId;
 
     /**
@@ -80,94 +85,6 @@ public class  UserInfo implements Serializable {
      */
     private Long totalSpace;
 
-
-    public void setUserId(String userId) {
-        this.userId = userId;
-    }
-
-    public String getUserId() {
-        return this.userId;
-    }
-
-    public void setNickName(String nickName) {
-        this.nickName = nickName;
-    }
-
-    public String getNickName() {
-        return this.nickName;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getEmail() {
-        return this.email;
-    }
-
-    public void setQqAvatar(String qqAvatar) {
-        this.qqAvatar = qqAvatar;
-    }
-
-    public String getQqAvatar() {
-        return this.qqAvatar;
-    }
-
-    public void setQqOpenId(String qqOpenId) {
-        this.qqOpenId = qqOpenId;
-    }
-
-    public String getQqOpenId() {
-        return this.qqOpenId;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setJoinTime(Date joinTime) {
-        this.joinTime = joinTime;
-    }
-
-    public Date getJoinTime() {
-        return this.joinTime;
-    }
-
-    public void setLastLoginTime(Date lastLoginTime) {
-        this.lastLoginTime = lastLoginTime;
-    }
-
-    public Date getLastLoginTime() {
-        return this.lastLoginTime;
-    }
-
-    public void setStatus(Integer status) {
-        this.status = status;
-    }
-
-    public Integer getStatus() {
-        return this.status;
-    }
-
-    public void setUseSpace(Long useSpace) {
-        this.useSpace = useSpace;
-    }
-
-    public Long getUseSpace() {
-        return this.useSpace;
-    }
-
-    public void setTotalSpace(Long totalSpace) {
-        this.totalSpace = totalSpace;
-    }
-
-    public Long getTotalSpace() {
-        return this.totalSpace;
-    }
 
     @Override
     public String toString() {

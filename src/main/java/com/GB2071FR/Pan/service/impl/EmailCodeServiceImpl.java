@@ -30,12 +30,14 @@ public class EmailCodeServiceImpl extends ServiceImpl<EmailCodeMapper, EmailCode
     @Autowired
     private EmailCodeMapper emailCodeMapper;
 
+
     @Autowired
     private UserInfoMapper userInfoMapper;
 
     //      发送邮箱
     @Autowired
     private JavaMailSender javaMailSender;
+
 
     @Autowired
     private AppConfig appConfig;
@@ -44,6 +46,22 @@ public class EmailCodeServiceImpl extends ServiceImpl<EmailCodeMapper, EmailCode
     private RedisComponent redisComponent;
 
     private static final Logger logger = LoggerFactory.getLogger(EmailCodeServiceImpl.class);
+
+
+    //验证邮箱验证码
+    @Override
+    public void checkCode(String email, String Code) {
+        EmailCode emailCode = baseMapper.selectByEmailAndCode(email, Code);
+        if (emailCode == null) {
+            throw new BusinessException("邮箱验证码不正确");
+        }
+        if (emailCode.getStatus() == 1 || System.currentTimeMillis() - emailCode.getCreateTime().getTime() > Constants.LENGTH_15 * 1000 * 60) {
+            throw new BusinessException("邮箱验证码已经失效");
+        }
+
+        emailCodeMapper.disableEmailCode(email);
+
+    }
 
     //    发送邮箱验证码
     @Override
@@ -73,6 +91,7 @@ public class EmailCodeServiceImpl extends ServiceImpl<EmailCodeMapper, EmailCode
 
 
     }
+
 
     //    方法重载
     private void sendEmailCode(String toEmail, String code) {

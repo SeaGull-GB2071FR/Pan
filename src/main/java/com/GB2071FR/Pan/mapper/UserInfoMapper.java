@@ -17,4 +17,7 @@ import org.springframework.data.repository.query.Param;
 public interface UserInfoMapper extends BaseMapper<UserInfo> {
 
     UserInfo selectByEmail(@Param("email") String email);
+
+    UserInfo selectByNickName(@Param("nickName") String nickName);
+
 }

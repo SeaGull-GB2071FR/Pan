@@ -1,8 +1,12 @@
 package com.GB2071FR.Pan.controller;
 
 
+import com.GB2071FR.Pan.annotation.GlobalInterceptor;
+import com.GB2071FR.Pan.annotation.VerifyParam;
 import com.GB2071FR.Pan.entity.constants.Constants;
 import com.GB2071FR.Pan.entity.dto.CreateImageCode;
+import com.GB2071FR.Pan.entity.dto.SessionWebUserDto;
+import com.GB2071FR.Pan.entity.enums.VerifyRegexEnum;
 import com.GB2071FR.Pan.entity.vo.ResponseVO;
 import com.GB2071FR.Pan.exception.BusinessException;
 import com.GB2071FR.Pan.service.EmailCodeService;
@@ -26,7 +30,7 @@ import java.io.IOException;
  * @since 2023-10-10
  */
 @RestController
-public class UserInfoController extends ABaseController{
+public class UserInfoController extends ABaseController {
 
     //    已完成：Nginx 的 nginx.conf 配置记得改
     @Autowired
@@ -56,10 +60,14 @@ public class UserInfoController extends ABaseController{
 
     //      发送邮箱验证码
     @RequestMapping("/sendEmailCode")
-    public ResponseVO sendEmailCode(HttpServletResponse response, HttpSession session,
-                                    String email,
-                                    String checkCode,
-                                    Integer type) {
+    /**
+     * AOP参数拦截
+     */
+    @GlobalInterceptor(checkParams = true,checkLogin = false)
+    public ResponseVO sendEmailCode(HttpSession session,
+                                    @VerifyParam(required = true, regex = VerifyRegexEnum.EMAIL, max = 150) String email,
+                                    @VerifyParam(required = true) String checkCode,
+                                    @VerifyParam(required = true) Integer type) {
         /**
          * 1 判断验证码是否正确
          * 2 正确则开始发送邮箱验证码
@@ -75,6 +83,71 @@ public class UserInfoController extends ABaseController{
 
         } finally {
             session.removeAttribute(Constants.CHECK_CODE_KEY_EMAIL);
+        }
+
+    }
+
+
+    //      注册
+    @RequestMapping("/register")
+    /**
+     * AOP参数拦截
+     */
+    @GlobalInterceptor(checkParams = true,checkLogin = false)
+    public ResponseVO register(HttpSession session,
+                               @VerifyParam(required = true, regex = VerifyRegexEnum.EMAIL, max = 150) String email,
+                               @VerifyParam(required = true) String nickName,
+                               @VerifyParam(required = true, regex = VerifyRegexEnum.PASSWORD, min = 8, max = 18) String password,
+                               @VerifyParam(required = true) String checkCode,
+                               @VerifyParam(required = true) String emailCode) {
+        /**
+         * 1 判断验证码是否正确
+         * 2 正确则开始发送邮箱验证码
+         *
+         */
+
+        try {
+            if (!(checkCode.equalsIgnoreCase((String) session.getAttribute(Constants.CHECK_CODE_KEY)))) {
+                throw new BusinessException("图片验证码不正确");
+            }
+
+            userInfoService.register(email, nickName, password, emailCode);
+            return getSuccessResponseVO(null);
+
+        } finally {
+            session.removeAttribute(Constants.CHECK_CODE_KEY);
+        }
+
+    }
+
+
+    //      注册
+    @RequestMapping("/login")
+    /**
+     * AOP参数拦截
+     */
+    @GlobalInterceptor(checkParams = true,checkLogin = false)
+    public ResponseVO login(HttpSession session,
+                            @VerifyParam(required = true) String email,
+                            @VerifyParam(required = true) String password,
+                            @VerifyParam(required = true) String checkCode) {
+        /**
+         * 1 判断验证码是否正确
+         * 2 正确则开始发送邮箱验证码
+         *
+         */
+
+        try {
+            if (!(checkCode.equalsIgnoreCase((String) session.getAttribute(Constants.CHECK_CODE_KEY)))) {
+                throw new BusinessException("验证码不正确");
+            }
+
+            SessionWebUserDto sessionWebUserDto = userInfoService.login(email, password);
+            session.setAttribute(Constants.SESSION_KEY, sessionWebUserDto);
+            return getSuccessResponseVO(sessionWebUserDto);
+
+        } finally {
+            session.removeAttribute(Constants.CHECK_CODE_KEY);
         }
 
     }

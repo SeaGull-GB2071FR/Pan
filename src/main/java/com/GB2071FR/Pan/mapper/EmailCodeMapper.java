@@ -11,4 +11,7 @@ public interface EmailCodeMapper extends BaseMapper<EmailCode> {
 
 //    置旧验证码无效
     void disableEmailCode(@Param("email") String email);
+
+//    查询
+    EmailCode selectByEmailAndCode(@Param("email") String email, @Param("code") String code);
 }
